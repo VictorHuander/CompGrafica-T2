@@ -1,0 +1,55 @@
+Relatório:
+
+Link do video: https://youtu.be/sGCwYtRSHzI
+
+CenarioGrande.txt:
+
+posicao 1
+
+Modo: Forca Bruta - Nro de Testes ForcaBruta: 1000
+Modo: Envelope - Nro de Testes ForcaBruta: 70 - Testes Envelope X Ponto: 1000
+Modo: QuadTree - Nro de Testes ForcaBruta: 70 - Testes Envelope X envelope: 70
+
+posicao 2
+
+Modo: Forca Bruta - Nro de Testes ForcaBruta: 1000
+Modo: Envelope - Nro de Testes ForcaBruta: 63 - Testes Envelope X Ponto: 1000
+Modo: QuadTree - Nro de Testes ForcaBruta: 63 - Testes Envelope X envelope: 63
+
+posicao 3
+Modo: Forca Bruta - Nro de Testes ForcaBruta: 1000
+Modo: Envelope - Nro de Testes ForcaBruta: 64 - Testes Envelope X Ponto: 1000
+Modo: QuadTree - Nro de Testes ForcaBruta: 64 - Testes Envelope X envelope: 63
+
+posicao 4
+Modo: Forca Bruta - Nro de Testes ForcaBruta: 1000
+Modo: Envelope - Nro de Testes ForcaBruta: 1000 - Testes Envelope X Ponto: 1000
+Modo: Envelope - Nro de Testes ForcaBruta: 81 - Testes Envelope X Ponto: 1000
+Modo: Envelope - Nro de Testes ForcaBruta: 1000 - Testes Envelope X Ponto: 1000
+Modo: QuadTree - Nro de Testes ForcaBruta: 81 - Testes Envelope X envelope: 64
+
+
+CenarioTeste.txt:
+
+posicao 1
+
+Modo: Forca Bruta - Nro de Testes ForcaBruta: 80
+Modo: Envelope - Nro de Testes ForcaBruta: 7 - Testes Envelope X Ponto: 80
+Modo: QuadTree - Nro de Testes ForcaBruta: 7 - Testes Envelope X envelope: 7
+
+posicao 2
+Modo: Forca Bruta - Nro de Testes ForcaBruta: 80
+Modo: Envelope - Nro de Testes ForcaBruta: 80 - Testes Envelope X Ponto: 80
+Modo: Envelope - Nro de Testes ForcaBruta: 7 - Testes Envelope X Ponto: 80
+Modo: Envelope - Nro de Testes ForcaBruta: 80 - Testes Envelope X Ponto: 80
+Modo: QuadTree - Nro de Testes ForcaBruta: 7 - Testes Envelope X envelope: 7
+
+posicao 3
+Modo: Forca Bruta - Nro de Testes ForcaBruta: 80
+Modo: Envelope - Nro de Testes ForcaBruta: 7 - Testes Envelope X Ponto: 80
+Modo: QuadTree - Nro de Testes ForcaBruta: 7 - Testes Envelope X envelope: 7
+
+posicao 4
+Modo: Forca Bruta - Nro de Testes ForcaBruta: 80
+Modo: Envelope - Nro de Testes ForcaBruta: 7 - Testes Envelope X Ponto: 80
+Modo: QuadTree - Nro de Testes ForcaBruta: 7 - Testes Envelope X envelope: 7
