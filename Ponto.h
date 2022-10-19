@@ -26,6 +26,7 @@ public:
     void imprime(char const *msgAntes, char const *msgDepois);
     void multiplica(double x, double y, double z);
     void soma(double x, double y, double z);
+    void subtrai(double x, double y, double z);
     void versor();
     double modulo();
     void rotacionaX(float angulo);

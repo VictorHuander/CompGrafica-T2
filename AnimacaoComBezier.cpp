@@ -215,11 +215,73 @@ void CarregaModelos()
     MeiaSeta.LePoligono("MeiaSeta.txt");
     Mastro.LePoligono("Mastro.txt");
     Pontos.LePoligono("PontosDeControle.txt");
+
 }
 void CriaCurvas()
 {
-    nCurvas = 20;
-    Curvas[0] = Bezier(Ponto (-5,-5), Ponto (0,6), Ponto (5,-5));
+    Ponto temp, P1, P2,VETOR, PA, P3;
+    nCurvas = 13;
+    for (int i=0; i<Pontos.getNVertices()-1;i++)
+    {
+        P1 = Pontos.getVertice(i);
+        P2 = Pontos.getVertice(i+1);
+        P3 = Pontos.getVertice(i+2);
+        Curvas[i] = Bezier(P1, PA, P2);
+        //P1.imprime();
+        //P2.imprime();
+        //P3.imprime();
+
+        VETOR = P2 - PA;
+        P2.rotacionaZ(180);
+        PA = P2 + VETOR;
+        if (i == Pontos.getNVertices() - 2)
+        {
+            P1 = Pontos.getVertice(i+1);
+            P2 = Pontos.getVertice(i - i +1);
+
+            Curvas[i+1] = Bezier(P1, PA, P2);
+            P1.imprime();
+            P2.imprime();
+        }
+    }
+
+   /* PA = Ponto(0,0,0);
+
+    for (int j=0;j < Pontos.getNVertices()-2;j++)
+    {
+        int f = 0;
+        P1 = Pontos.getVertice(f);
+        P2 = Pontos.getVertice(j+1);
+        //P1.imprime();
+        //P2.imprime();
+
+        Curvas[Pontos.getNVertices()+j] = Bezier(P1, PA, P2);
+
+        VETOR = P2 - PA;
+        P2.rotacionaZ(-225);
+        PA = P2 + VETOR;
+
+    }*/
+
+
+
+    //P1.imprime();
+    //P2.imprime();
+    //Curvas[1] = Bezier(Ponto (0,0), Ponto (4,0), Ponto (4,0));
+    //Curvas[0] = Bezier(Ponto (0,0), Ponto (4,0), Ponto (2,3));
+    //Curvas[1] = Bezier(Ponto (0,0), Ponto (-4,0), Ponto (-2,-3));
+    //Curvas[2] = Bezier(Ponto (0,0), Ponto (1,4), Ponto (-2,3));
+    //Curvas[3] = Bezier(Ponto (0,0), Ponto (-1,-4), Ponto (2,-3));
+    //Curvas[4] = Bezier(Ponto (0,0), Ponto (2,-3), Ponto (4,0));
+    //Curvas[5] = Bezier(Ponto (0,0), Ponto (-2,3), Ponto (-4,0));
+    //Curvas[6] = Bezier(Ponto (4,0), Ponto (1,0), Ponto (2,3));
+    //Curvas[7] = Bezier(Ponto (2,3), Ponto (0,0), Ponto (-2,3));
+    //Curvas[8] = Bezier(Ponto (-2,3), Ponto (-1,0), Ponto (-4,0));
+    //Curvas[9] = Bezier(Ponto (-4,0), Ponto (-1,0), Ponto (-2,-3));
+    //Curvas[10] = Bezier(Ponto (-2,-3), Ponto (0,0), Ponto (2,-3));
+    //Curvas[11] = Bezier(Ponto (2,-3), Ponto (1,0), Ponto (4,0));
+    //Curvas[12] = Bezier(Ponto (0,0), Ponto (0,0), Ponto (4,0));
+    //Curvas[13] = Bezier(Ponto (0,0), Ponto (0,0), Ponto (-4,0));
 }
 // **********************************************************************
 //
@@ -230,7 +292,7 @@ void init()
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
     CarregaModelos();
-    CriaInstancias();
+    //CriaInstancias();
 
     CriaCurvas();
 

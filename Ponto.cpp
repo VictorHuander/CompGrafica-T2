@@ -1,4 +1,4 @@
-// 
+//
 //  Ponto.cpp
 //  OpenGLTest
 //
@@ -50,6 +50,13 @@ void Ponto::soma(double x, double y, double z)
     this->z += z;
 }
 
+void Ponto::subtrai(double x, double y, double z)
+{
+    this->x -= x;
+    this->y -= y;
+    this->z -= z;
+}
+
 void Ponto::rotacionaZ(float angulo)
 {
     float xr, yr;
@@ -99,7 +106,7 @@ void Ponto::versor()
 Ponto ObtemMaximo (Ponto P1, Ponto P2)
 {
     Ponto Max;
-    
+
     Max.x = (P2.x > P1.x) ? P2.x : P1.x;
     Max.y = (P2.y > P1.y) ? P2.y : P1.y;
     Max.z = (P2.z > P1.x) ? P2.z : P1.z;
@@ -108,7 +115,7 @@ Ponto ObtemMaximo (Ponto P1, Ponto P2)
 Ponto ObtemMinimo (Ponto P1, Ponto P2)
 {
     Ponto Min;
-    
+
     Min.x = (P2.x < P1.x) ? P2.x : P1.x;
     Min.y = (P2.y < P1.y) ? P2.y : P1.y;
     Min.z = (P2.z < P1.x) ? P2.z : P1.z;
@@ -205,7 +212,7 @@ bool HaInterseccao(Ponto k, Ponto l, Ponto m, Ponto n)
 {
     int ret;
     double s,t;
-    
+
     ContadorInt = ContadorInt + 1;
     ret = intersec2d( k,  l,  m,  n, s, t);
     if (!ret) return false;
@@ -235,7 +242,7 @@ long int getContadorInt()
 double calculaDistancia(Ponto P, Ponto Q)
 {
     float dx, dy, dz;
-    
+
     dx = P.x - Q.x;
     dy = P.y - Q.y;
     dz = P.z - Q.z;
