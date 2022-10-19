@@ -61,7 +61,11 @@
 			<Add option="-Wno-narrowing" />
 			<Add option="-Wno-deprecated-declarations" />
 		</Compiler>
-		<Unit filename="Linha.cpp" />
+		<Unit filename="AnimacaoComBezier.cpp" />
+		<Unit filename="Bezier.cpp" />
+		<Unit filename="Bezier.h" />
+		<Unit filename="InstanciaBZ.cpp" />
+		<Unit filename="InstanciaBZ.h" />
 		<Unit filename="Linha.h" />
 		<Unit filename="ListaDeCoresRGB.cpp" />
 		<Unit filename="ListaDeCoresRGB.h" />
@@ -69,13 +73,8 @@
 		<Unit filename="Poligono.h" />
 		<Unit filename="Ponto.cpp" />
 		<Unit filename="Ponto.h" />
-		<Unit filename="PontosNoTriangulo.cpp" />
 		<Unit filename="Temporizador.cpp" />
 		<Unit filename="Temporizador.h" />
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

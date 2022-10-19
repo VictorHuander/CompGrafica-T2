@@ -26,7 +26,11 @@ using namespace std;
 #include <glut.h>
 #endif
 
-enum {
+enum Cores {
+    Black, White,
+    Gray,
+    Yellow,
+    Red,Green, Blue,
     Aquamarine,
     BlueViolet,
     Brown,
@@ -120,8 +124,7 @@ enum {
     Med_Purple,
     Light_Purple,
     Very_Light_Purple,
-    White
-    
+    LAST_COLOR
 };
 
 

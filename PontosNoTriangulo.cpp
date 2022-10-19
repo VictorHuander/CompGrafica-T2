@@ -188,8 +188,8 @@ void init()
     PontosDoCenario.LePoligono("CenarioGrande.txt");
 
     PontosDoCenario.obtemLimites(Min,Max);
-    Min.x--;Min.y--;
-    Max.x++;Max.y++;
+    //Min.x--;Min.y--;
+    //Max.x++;Max.y++;
 
     Meio = (Max+Min) * 0.5; // Ponto central da janela
     Tamanho = (Max-Min);  // Tamanho da janela em X,Y

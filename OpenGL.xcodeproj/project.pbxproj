@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8311C2F1289DB4EC0066E657 /* PontosNoTriangulo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8311C2F0289DB4EC0066E657 /* PontosNoTriangulo.cpp */; };
 		831A55D12639F593009E6228 /* Temporizador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 831A55CF2639F593009E6228 /* Temporizador.cpp */; };
 		831A55D92639F5C6009E6228 /* Poligono.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 831A55D42639F5C6009E6228 /* Poligono.cpp */; };
 		831A55DB2639F5C6009E6228 /* Ponto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 831A55D82639F5C6009E6228 /* Ponto.cpp */; };
-		83CD5A4326CB3D7C00FBE12F /* Linha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83CD5A4126CB3D7C00FBE12F /* Linha.cpp */; };
-		83EBD22126DE5DF3008BF0C9 /* ListaDeCoresRGB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83EBD22026DE5DF3008BF0C9 /* ListaDeCoresRGB.cpp */; };
+		835D7A2728DA55AE008C72B2 /* Bezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 835D7A2628DA55AE008C72B2 /* Bezier.cpp */; };
+		8384DD8928381639004619C2 /* AnimacaoComBezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8384DD8828381639004619C2 /* AnimacaoComBezier.cpp */; };
+		83D4649B28DA4321005B750B /* InstanciaBZ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83D4649928DA4321005B750B /* InstanciaBZ.cpp */; };
+		83DB8BC928236C0E00EB7A89 /* ListaDeCoresRGB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83DB8BC828236C0E00EB7A89 /* ListaDeCoresRGB.cpp */; };
 		83F7D038215134D5004792C9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F7D037215134D5004792C9 /* GLUT.framework */; };
 		83F7D03A2151355A004792C9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F7D0392151355A004792C9 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
@@ -30,18 +31,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8311C2F0289DB4EC0066E657 /* PontosNoTriangulo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PontosNoTriangulo.cpp; sourceTree = "<group>"; };
-		8311C2F4289DC2A40066E657 /* TrianguloCampoDeVisao.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TrianguloCampoDeVisao.txt; sourceTree = "<group>"; };
 		831A55CF2639F593009E6228 /* Temporizador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Temporizador.cpp; sourceTree = "<group>"; };
 		831A55D02639F593009E6228 /* Temporizador.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Temporizador.h; sourceTree = "<group>"; };
 		831A55D42639F5C6009E6228 /* Poligono.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Poligono.cpp; sourceTree = "<group>"; };
 		831A55D52639F5C6009E6228 /* Ponto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ponto.h; sourceTree = "<group>"; };
 		831A55D72639F5C6009E6228 /* Poligono.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poligono.h; sourceTree = "<group>"; };
 		831A55D82639F5C6009E6228 /* Ponto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ponto.cpp; sourceTree = "<group>"; };
-		833F7703274D5648006C350C /* ListaDeCoresRGB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListaDeCoresRGB.h; sourceTree = "<group>"; };
-		83CD5A4126CB3D7C00FBE12F /* Linha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Linha.cpp; sourceTree = "<group>"; };
-		83CD5A4226CB3D7C00FBE12F /* Linha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Linha.h; sourceTree = "<group>"; };
-		83EBD22026DE5DF3008BF0C9 /* ListaDeCoresRGB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListaDeCoresRGB.cpp; sourceTree = "<group>"; };
+		831A55E7263A3934009E6228 /* Triangulo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Triangulo.txt; sourceTree = "<group>"; };
+		831A55E9263A3F1A009E6228 /* Retangulo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Retangulo.txt; sourceTree = "<group>"; };
+		835D7A2528DA55AE008C72B2 /* Bezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bezier.h; sourceTree = "<group>"; };
+		835D7A2628DA55AE008C72B2 /* Bezier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bezier.cpp; sourceTree = "<group>"; };
+		8384DD8828381639004619C2 /* AnimacaoComBezier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimacaoComBezier.cpp; sourceTree = "<group>"; };
+		83D4649928DA4321005B750B /* InstanciaBZ.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InstanciaBZ.cpp; sourceTree = "<group>"; };
+		83D4649A28DA4321005B750B /* InstanciaBZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstanciaBZ.h; sourceTree = "<group>"; };
+		83DB8BC828236C0E00EB7A89 /* ListaDeCoresRGB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListaDeCoresRGB.cpp; sourceTree = "<group>"; };
 		83F7D02A21513410004792C9 /* OpenGLTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F7D037215134D5004792C9 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		83F7D0392151355A004792C9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -63,18 +66,20 @@
 		83F7D02121513410004792C9 = {
 			isa = PBXGroup;
 			children = (
-				8311C2F0289DB4EC0066E657 /* PontosNoTriangulo.cpp */,
-				83CD5A4126CB3D7C00FBE12F /* Linha.cpp */,
-				83EBD22026DE5DF3008BF0C9 /* ListaDeCoresRGB.cpp */,
-				833F7703274D5648006C350C /* ListaDeCoresRGB.h */,
-				8311C2F4289DC2A40066E657 /* TrianguloCampoDeVisao.txt */,
-				83CD5A4226CB3D7C00FBE12F /* Linha.h */,
+				8384DD8828381639004619C2 /* AnimacaoComBezier.cpp */,
+				835D7A2628DA55AE008C72B2 /* Bezier.cpp */,
+				835D7A2528DA55AE008C72B2 /* Bezier.h */,
+				83DB8BC828236C0E00EB7A89 /* ListaDeCoresRGB.cpp */,
+				83D4649928DA4321005B750B /* InstanciaBZ.cpp */,
+				83D4649A28DA4321005B750B /* InstanciaBZ.h */,
 				831A55D42639F5C6009E6228 /* Poligono.cpp */,
 				831A55D72639F5C6009E6228 /* Poligono.h */,
 				831A55D82639F5C6009E6228 /* Ponto.cpp */,
 				831A55D52639F5C6009E6228 /* Ponto.h */,
 				831A55CF2639F593009E6228 /* Temporizador.cpp */,
 				831A55D02639F593009E6228 /* Temporizador.h */,
+				831A55E7263A3934009E6228 /* Triangulo.txt */,
+				831A55E9263A3F1A009E6228 /* Retangulo.txt */,
 				83F7D02B21513410004792C9 /* Products */,
 				83F7D036215134D5004792C9 /* Frameworks */,
 			);
@@ -153,12 +158,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83CD5A4326CB3D7C00FBE12F /* Linha.cpp in Sources */,
+				83D4649B28DA4321005B750B /* InstanciaBZ.cpp in Sources */,
 				831A55D92639F5C6009E6228 /* Poligono.cpp in Sources */,
-				83EBD22126DE5DF3008BF0C9 /* ListaDeCoresRGB.cpp in Sources */,
-				8311C2F1289DB4EC0066E657 /* PontosNoTriangulo.cpp in Sources */,
 				831A55DB2639F5C6009E6228 /* Ponto.cpp in Sources */,
+				83DB8BC928236C0E00EB7A89 /* ListaDeCoresRGB.cpp in Sources */,
+				8384DD8928381639004619C2 /* AnimacaoComBezier.cpp in Sources */,
 				831A55D12639F593009E6228 /* Temporizador.cpp in Sources */,
+				835D7A2728DA55AE008C72B2 /* Bezier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

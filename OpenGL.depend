@@ -85,10 +85,7 @@
 1584988348 source:d:\pinho\poligonos\temporizador.cpp
 	"Temporizador.h"
 
-1621520030 source:d:\pinho\basico2d\basico2d\listadecoresrgb.cpp
-	"ListaDeCoresRGB.h"
-
-1621514488 d:\pinho\basico2d\basico2d\listadecoresrgb.h
+1664485448 source:c:\users\10033421\desktop\bezier\animacaocombezier.cpp
 	<iostream>
 	<cmath>
 	<ctime>
@@ -98,27 +95,31 @@
 	<sys/time.h>
 	<GLUT/glut.h>
 	<glut.h>
+	"Ponto.h"
+	"Poligono.h"
+	"InstanciaBZ.h"
+	"Temporizador.h"
+	"ListaDeCoresRGB.h"
 
-1298986600 d:\pinho\basico2d\basico2d\gl\glut.h
+1664485449 c:\users\10033421\desktop\bezier\gl\glut.h
 	"freeglut.h"
 
-1298986600 d:\pinho\basico2d\basico2d\gl\freeglut.h
+1664485449 c:\users\10033421\desktop\bezier\gl\freeglut.h
 	"freeglut_std.h"
 	"freeglut_ext.h"
 
-1298986600 d:\pinho\basico2d\basico2d\gl\freeglut_std.h
+1664485449 c:\users\10033421\desktop\bezier\gl\freeglut_std.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 
-1298986600 d:\pinho\basico2d\basico2d\gl\freeglut_ext.h
+1664485449 c:\users\10033421\desktop\bezier\gl\freeglut_ext.h
 
-1621479118 source:d:\pinho\basico2d\basico2d\poligono.cpp
+1664485448 c:\users\10033421\desktop\bezier\ponto.h
 	<iostream>
-	<fstream>
-	"Poligono.h"
+	<cmath>
 
-1621479098 d:\pinho\basico2d\basico2d\poligono.h
+1664485448 c:\users\10033421\desktop\bezier\poligono.h
 	<iostream>
 	<windows.h>
 	<glut.h>
@@ -127,39 +128,20 @@
 	"Ponto.h"
 	<vector>
 
-1629143624 d:\pinho\basico2d\basico2d\ponto.h
+1664485447 c:\users\10033421\desktop\bezier\instanciabz.h
 	<iostream>
-
-1619656962 source:d:\pinho\basico2d\basico2d\ponto.cpp
-	"Ponto.h"
-
-1629145130 source:d:\pinho\basico2d\basico2d\programabasicoopengl.cpp
-	<iostream>
-	<cmath>
-	<ctime>
-	<fstream>
-	<windows.h>
-	<glut.h>
-	<sys/time.h>
-	<GLUT/glut.h>
-	<glut.h>
-	"Ponto.h"
-	"Poligono.h"
-	"Temporizador.h"
+	"Bezier.h"
 	"ListaDeCoresRGB.h"
 
-1584988812 d:\pinho\basico2d\basico2d\temporizador.h
+1664485447 c:\users\10033421\desktop\bezier\bezier.h
 	<iostream>
 	<windows.h>
-	<sys/time.h>
+	<glut.h>
+	<GLUT/glut.h>
+	<glut.h>
+	"Ponto.h"
 
-1584988348 source:d:\pinho\basico2d\basico2d\temporizador.cpp
-	"Temporizador.h"
-
-1659963573 source:c:\users\10033421\desktop\pontosnotriangulo\listadecoresrgb.cpp
-	"ListaDeCoresRGB.h"
-
-1659963572 c:\users\10033421\desktop\pontosnotriangulo\listadecoresrgb.h
+1664485447 c:\users\10033421\desktop\bezier\listadecoresrgb.h
 	<iostream>
 	<cmath>
 	<ctime>
@@ -170,95 +152,79 @@
 	<GLUT/glut.h>
 	<glut.h>
 
-1659963573 c:\users\10033421\desktop\pontosnotriangulo\gl\glut.h
-	"freeglut.h"
-
-1659963574 c:\users\10033421\desktop\pontosnotriangulo\gl\freeglut.h
-	"freeglut_std.h"
-	"freeglut_ext.h"
-
-1659963574 c:\users\10033421\desktop\pontosnotriangulo\gl\freeglut_std.h
-	<windows.h>
-	<GL/gl.h>
-	<GL/glu.h>
-
-1659963574 c:\users\10033421\desktop\pontosnotriangulo\gl\freeglut_ext.h
-
-1659963572 source:c:\users\10033421\desktop\pontosnotriangulo\poligono.cpp
-	<iostream>
-	<fstream>
-	"Poligono.h"
-
-1659963572 c:\users\10033421\desktop\pontosnotriangulo\poligono.h
-	<iostream>
-	<windows.h>
-	<glut.h>
-	<GLUT/glut.h>
-	<glut.h>
-	"Ponto.h"
-	<vector>
-
-1659963572 c:\users\10033421\desktop\pontosnotriangulo\ponto.h
-	<iostream>
-	<cmath>
-
-1659963573 source:c:\users\10033421\desktop\pontosnotriangulo\ponto.cpp
-	"Ponto.h"
-
-1659963572 source:c:\users\10033421\desktop\pontosnotriangulo\pontosnotriangulo.cpp
-	<iostream>
-	<cmath>
-	<ctime>
-	<fstream>
-	<windows.h>
-	<glut.h>
-	<sys/time.h>
-	<GLUT/glut.h>
-	<glut.h>
-	"Ponto.h"
-	"Poligono.h"
-	"Temporizador.h"
-
-1659963572 c:\users\10033421\desktop\pontosnotriangulo\temporizador.h
+1664485447 c:\users\10033421\desktop\bezier\temporizador.h
 	<iostream>
 	<windows.h>
 	<sys/time.h>
 
-1659963573 source:c:\users\10033421\desktop\pontosnotriangulo\temporizador.cpp
-	"Temporizador.h"
+1664485447 source:c:\users\10033421\desktop\bezier\bezier.cpp
+	"Bezier.h"
 
-1663080486 source:c:\users\victo\onedrive\documentos\github\compgrafica-t1\linha.cpp
+1664485447 source:c:\users\10033421\desktop\bezier\instanciabz.cpp
+	"InstanciaBZ.h"
+
+1664485448 source:c:\users\10033421\desktop\bezier\linha.cpp
 	<cstdlib>
 	"Linha.h"
 
-1663080486 c:\users\victo\onedrive\documentos\github\compgrafica-t1\linha.h
+1664485447 c:\users\10033421\desktop\bezier\linha.h
 	<windows.h>
 	"gl\glut.h"
 	<GLUT/glut.h>
 	"Ponto.h"
 
-1663080486 c:\users\victo\onedrive\documentos\github\compgrafica-t1\gl\glut.h
+1664485448 source:c:\users\10033421\desktop\bezier\listadecoresrgb.cpp
+	"ListaDeCoresRGB.h"
+
+1664485447 source:c:\users\10033421\desktop\bezier\poligono.cpp
+	<iostream>
+	<fstream>
+	"Poligono.h"
+
+1664485448 source:c:\users\10033421\desktop\bezier\ponto.cpp
+	"Ponto.h"
+
+1664485448 source:c:\users\10033421\desktop\bezier\temporizador.cpp
+	"Temporizador.h"
+
+1665978035 source:c:\users\victo\downloads\bezier\bezier\bezier.cpp
+	"Bezier.h"
+
+1665978036 c:\users\victo\downloads\bezier\bezier\bezier.h
+	<iostream>
+	<windows.h>
+	<glut.h>
+	<GLUT/glut.h>
+	<glut.h>
+	"Ponto.h"
+
+1665978036 c:\users\victo\downloads\bezier\bezier\gl\glut.h
 	"freeglut.h"
 
-1663080486 c:\users\victo\onedrive\documentos\github\compgrafica-t1\gl\freeglut.h
+1665978036 c:\users\victo\downloads\bezier\bezier\gl\freeglut.h
 	"freeglut_std.h"
 	"freeglut_ext.h"
 
-1663080486 c:\users\victo\onedrive\documentos\github\compgrafica-t1\gl\freeglut_std.h
+1665978036 c:\users\victo\downloads\bezier\bezier\gl\freeglut_std.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 
-1663080486 c:\users\victo\onedrive\documentos\github\compgrafica-t1\gl\freeglut_ext.h
+1665978036 c:\users\victo\downloads\bezier\bezier\gl\freeglut_ext.h
 
-1663080486 c:\users\victo\onedrive\documentos\github\compgrafica-t1\ponto.h
+1665978036 c:\users\victo\downloads\bezier\bezier\ponto.h
 	<iostream>
 	<cmath>
 
-1663080486 source:c:\users\victo\onedrive\documentos\github\compgrafica-t1\listadecoresrgb.cpp
+1665978036 source:c:\users\victo\downloads\bezier\bezier\instanciabz.cpp
+	"InstanciaBZ.h"
+
+1665978036 c:\users\victo\downloads\bezier\bezier\instanciabz.h
+	<iostream>
+	"Bezier.h"
 	"ListaDeCoresRGB.h"
 
-1663080486 c:\users\victo\onedrive\documentos\github\compgrafica-t1\listadecoresrgb.h
+1665978036 c:\users\victo\downloads\bezier\bezier\listadecoresrgb.h
 	<iostream>
 	<cmath>
 	<ctime>
@@ -269,12 +235,15 @@
 	<GLUT/glut.h>
 	<glut.h>
 
-1663080486 source:c:\users\victo\onedrive\documentos\github\compgrafica-t1\poligono.cpp
+1665978036 source:c:\users\victo\downloads\bezier\bezier\listadecoresrgb.cpp
+	"ListaDeCoresRGB.h"
+
+1665978036 source:c:\users\victo\downloads\bezier\bezier\poligono.cpp
 	<iostream>
 	<fstream>
 	"Poligono.h"
 
-1663080486 c:\users\victo\onedrive\documentos\github\compgrafica-t1\poligono.h
+1665978036 c:\users\victo\downloads\bezier\bezier\poligono.h
 	<iostream>
 	<windows.h>
 	<glut.h>
@@ -283,30 +252,14 @@
 	"Ponto.h"
 	<vector>
 
-1663080486 source:c:\users\victo\onedrive\documentos\github\compgrafica-t1\ponto.cpp
+1665978036 source:c:\users\victo\downloads\bezier\bezier\ponto.cpp
 	"Ponto.h"
 
-1663163394 source:c:\users\victo\onedrive\documentos\github\compgrafica-t1\pontosnotriangulo.cpp
-	<iostream>
-	<cmath>
-	<ctime>
-	<fstream>
-	<windows.h>
-	<glut.h>
-	<sys/time.h>
-	<GLUT/glut.h>
-	<glut.h>
-	"Ponto.h"
-	"Poligono.h"
-	"ListaDeCoresRGB.h"
+1665978036 source:c:\users\victo\downloads\bezier\bezier\temporizador.cpp
 	"Temporizador.h"
-	"Linha.h"
 
-1663080486 c:\users\victo\onedrive\documentos\github\compgrafica-t1\temporizador.h
+1665978036 c:\users\victo\downloads\bezier\bezier\temporizador.h
 	<iostream>
 	<windows.h>
 	<sys/time.h>
-
-1663080486 source:c:\users\victo\onedrive\documentos\github\compgrafica-t1\temporizador.cpp
-	"Temporizador.h"
 

@@ -17,6 +17,7 @@ class Ponto {
 
 public:
     float x,y,z;
+    int cor;
     Ponto ();
     Ponto(float x, float y, float z=0);
     void set(float x, float y, float z=0);
@@ -50,5 +51,7 @@ bool HaInterseccao(Ponto k, Ponto l, Ponto m, Ponto n);
 
 long int getContadorInt();
 void resetContadorInt();
+int lado(Ponto P1, Ponto P2, Ponto A);
+double calculaDistancia(Ponto P, Ponto Q);
 
 #endif /* Ponto_hpp */

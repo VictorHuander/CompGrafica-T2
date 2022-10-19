@@ -132,9 +132,3 @@ void Poligono::alteraVertice(int i, Ponto P)
 {
     Vertices[i] = P;
 }
-
-void Poligono::imprimeVertices()
-{
-    for (int i=0; i<Vertices.size(); i++)
-        Vertices[i].imprime("", "\n");
-}

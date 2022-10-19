@@ -3,7 +3,7 @@
 //  OpenGLTest
 //
 //  Created by Márcio Sarroglia Pinho on 18/08/20.
-//  Copyright © 2020 Márcio Sarroglia Pinho. All rights reserved.
+//  Copyright © 2022 Márcio Sarroglia Pinho. All rights reserved.
 //
 
 #include "Ponto.h"
@@ -227,4 +227,18 @@ void resetContadorInt()
 long int getContadorInt()
 {
     return ContadorInt;
+}
+
+// **********************************************************************
+//
+// **********************************************************************
+double calculaDistancia(Ponto P, Ponto Q)
+{
+    float dx, dy, dz;
+    
+    dx = P.x - Q.x;
+    dy = P.y - Q.y;
+    dz = P.z - Q.z;
+
+    return sqrt(dx*dx+dy*dy+dz*dz);
 }
