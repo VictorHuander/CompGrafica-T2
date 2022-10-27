@@ -46,6 +46,7 @@ using namespace std;
 Temporizador T;
 double AccumDeltaT=0;
 Temporizador T2;
+ifstream arquivo;
 
 InstanciaBZ Personagens[10];
 
@@ -58,7 +59,14 @@ Ponto Min, Max;
 bool desenha = false;
 
 Poligono Mapa, MeiaSeta, Mastro, Pontos;
+vector<vector<int> > curvasBezier;
 int nInstancias=0;
+
+Ponto movimento(0,1,0);
+int xr,yr,auxr;
+
+int nInimigos=10;
+int personagemPrincipal[5][5];
 
 float angulo=0.0;
 
@@ -132,30 +140,28 @@ void DesenhaEixos()
 void DesenhaSeta()
 {
     glPushMatrix();
-        Pontos.desenhaPoligono();
-        glScaled(1,-1, 1);
-        Pontos.desenhaPoligono();
+        Mastro.desenhaPoligono();
     glPopMatrix();
 }
 // **********************************************************************
 void DesenhaApontador()
 {
     glPushMatrix();
-        glTranslated(-4, 0, 0);
+        glTranslated(0, 0, 0);
         DesenhaSeta();
     glPopMatrix();
 }
 // **********************************************************************
-void DesenhaHelice()
-{
-    glPushMatrix();
-    for(int i=0;i < 4; i++)
-    {
-        glRotatef(90, 0, 0, 1);
-        DesenhaApontador();
-    }
-    glPopMatrix();
-}
+//void DesenhaHelice()
+//{
+//    glPushMatrix();
+//    for(int i=0;i < 4; i++)
+//    {
+//        glRotatef(90, 0, 0, 1);
+//        DesenhaApontador();
+//    }
+//    glPopMatrix();
+//}
 // **********************************************************************
 //void DesenhaHelicesGirando()
 //{
@@ -181,7 +187,7 @@ void DesenhaCatavento()
         glTranslated(0,0,0);
         glScaled(0.2, 0.2, 1);
         defineCor(YellowGreen);
-        DesenhaHelice();
+        DesenhaApontador();
 
     glPopMatrix();
 }
@@ -190,10 +196,10 @@ void DesenhaCatavento()
 // **********************************************************************
 void CriaInstancias()
 {
-    Personagens[0].Posicao = Ponto (0,0);
-    Personagens[0].Rotacao = 0;
+    Personagens[0].Posicao = Pontos.getVertice(0);
+    Personagens[0].Rotacao = -90;
     Personagens[0].modelo = DesenhaCatavento;
-    Personagens[0].Escala = Ponto (7,7,7);
+    Personagens[0].Escala = Ponto (2,2,2);
 
     //Personagens[1].Posicao = Ponto (3,0);
     //Personagens[1].Rotacao = -90;
@@ -211,77 +217,37 @@ void CriaInstancias()
 // **********************************************************************
 void CarregaModelos()
 {
-    Mapa.LePoligono("EstadoRS.txt");
-    MeiaSeta.LePoligono("MeiaSeta.txt");
+    //Mapa.LePoligono("EstadoRS.txt");
+    //MeiaSeta.LePoligono("MeiaSeta.txt");
     Mastro.LePoligono("Mastro.txt");
     Pontos.LePoligono("PontosDeControle.txt");
 
+
 }
+
+
+
 void CriaCurvas()
 {
-    Ponto temp, P1, P2,VETOR, PA, P3;
-    nCurvas = 13;
-    for (int i=0; i<Pontos.getNVertices()-1;i++)
+    arquivo.open("curvas.txt");
+    int pos;
+    vector<int> aux;
+    arquivo >> nCurvas;
+    for (int i = 0; i < nCurvas; i++)
     {
-        P1 = Pontos.getVertice(i);
-        P2 = Pontos.getVertice(i+1);
-        P3 = Pontos.getVertice(i+2);
-        Curvas[i] = Bezier(P1, PA, P2);
-        //P1.imprime();
-        //P2.imprime();
-        //P3.imprime();
-
-        VETOR = P2 - PA;
-        P2.rotacionaZ(180);
-        PA = P2 + VETOR;
-        if (i == Pontos.getNVertices() - 2)
+        for (int j = 0; j < 3; j++)
         {
-            P1 = Pontos.getVertice(i+1);
-            P2 = Pontos.getVertice(i - i +1);
-
-            Curvas[i+1] = Bezier(P1, PA, P2);
-            P1.imprime();
-            P2.imprime();
+            arquivo >> pos;
+            aux.push_back(pos);
+            if(aux.size() == 3)
+            {
+                curvasBezier.push_back(aux);
+                aux.clear();
+            }
         }
+        Curvas[i] = Bezier(Pontos.getVertice(curvasBezier[i][0]), Pontos.getVertice(curvasBezier[i][1]), Pontos.getVertice(curvasBezier[i][2]));
     }
 
-   /* PA = Ponto(0,0,0);
-
-    for (int j=0;j < Pontos.getNVertices()-2;j++)
-    {
-        int f = 0;
-        P1 = Pontos.getVertice(f);
-        P2 = Pontos.getVertice(j+1);
-        //P1.imprime();
-        //P2.imprime();
-
-        Curvas[Pontos.getNVertices()+j] = Bezier(P1, PA, P2);
-
-        VETOR = P2 - PA;
-        P2.rotacionaZ(-225);
-        PA = P2 + VETOR;
-
-    }*/
-
-
-
-    //P1.imprime();
-    //P2.imprime();
-    //Curvas[1] = Bezier(Ponto (0,0), Ponto (4,0), Ponto (4,0));
-    //Curvas[0] = Bezier(Ponto (0,0), Ponto (4,0), Ponto (2,3));
-    //Curvas[1] = Bezier(Ponto (0,0), Ponto (-4,0), Ponto (-2,-3));
-    //Curvas[2] = Bezier(Ponto (0,0), Ponto (1,4), Ponto (-2,3));
-    //Curvas[3] = Bezier(Ponto (0,0), Ponto (-1,-4), Ponto (2,-3));
-    //Curvas[4] = Bezier(Ponto (0,0), Ponto (2,-3), Ponto (4,0));
-    //Curvas[5] = Bezier(Ponto (0,0), Ponto (-2,3), Ponto (-4,0));
-    //Curvas[6] = Bezier(Ponto (4,0), Ponto (1,0), Ponto (2,3));
-    //Curvas[7] = Bezier(Ponto (2,3), Ponto (0,0), Ponto (-2,3));
-    //Curvas[8] = Bezier(Ponto (-2,3), Ponto (-1,0), Ponto (-4,0));
-    //Curvas[9] = Bezier(Ponto (-4,0), Ponto (-1,0), Ponto (-2,-3));
-    //Curvas[10] = Bezier(Ponto (-2,-3), Ponto (0,0), Ponto (2,-3));
-    //Curvas[11] = Bezier(Ponto (2,-3), Ponto (1,0), Ponto (4,0));
-    //Curvas[12] = Bezier(Ponto (0,0), Ponto (0,0), Ponto (4,0));
-    //Curvas[13] = Bezier(Ponto (0,0), Ponto (0,0), Ponto (-4,0));
 }
 // **********************************************************************
 //
@@ -292,9 +258,8 @@ void init()
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
     CarregaModelos();
-    //CriaInstancias();
-
     CriaCurvas();
+    CriaInstancias();
 
     float d = 15;
     Min = Ponto(-d,-d);
@@ -302,10 +267,21 @@ void init()
 }
 
 // **********************************************************************
+
+void DesenhaRetangulo()
+{
+    glBegin(GL_QUADS);
+        glVertex2d(-0.5, -0.5);
+        glVertex2d(-0.5, 0.5);
+        glVertex2d(0.5, 0.5);
+        glVertex2d(0.5, -0.5);
+    glEnd();
+}
+
 void DesenhaPersonagens(float tempoDecorrido)
 {
-    cout << "nInstancias: "<< nInstancias << endl;
-    for(int i=0; i<nInstancias;i++)
+    //cout << "nInstancias: " << nInstancias << endl;
+    for (int i = 0; i < nInstancias; i++)
     {
         Personagens[i].AtualizaPosicao(tempoDecorrido);
         Personagens[i].desenha();
@@ -321,6 +297,8 @@ void DesenhaCurvas()
         Curvas[i].Traca();
     }
 }
+
+
 // **********************************************************************
 //  void display( void )
 // **********************************************************************
