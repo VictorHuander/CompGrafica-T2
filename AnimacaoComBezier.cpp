@@ -50,6 +50,8 @@ ifstream arquivo;
 
 InstanciaBZ Personagens[10];
 
+Ponto CurvasPersonagem[10][3];
+
 Bezier Curvas[20];
 unsigned int nCurvas;
 
@@ -199,7 +201,8 @@ void CriaInstancias()
     Personagens[0].Posicao = Pontos.getVertice(0);
     Personagens[0].Rotacao = -90;
     Personagens[0].modelo = DesenhaCatavento;
-    Personagens[0].Escala = Ponto (2,2,2);
+    Personagens[0].Escala = Ponto (1,1,1);
+
 
     //Personagens[1].Posicao = Ponto (3,0);
     //Personagens[1].Rotacao = -90;
@@ -261,7 +264,7 @@ void init()
     CriaCurvas();
     CriaInstancias();
 
-    float d = 15;
+    float d = 5;
     Min = Ponto(-d,-d);
     Max = Ponto(d,d);
 }
@@ -298,6 +301,35 @@ void DesenhaCurvas()
     }
 }
 
+void movePersonagens(int personagem)
+{
+
+
+    //Bezier curvAux[3];
+    //curvAux[0] = Bezier(CurvasPersonagem[personagem][0]);
+    //curvAux[1] = Bezier(CurvasPersonagem[personagem][1]);
+    //curvAux[2] = Bezier(CurvasPersonagem[personagem][2]);
+
+   //while (Personagens[personagem].tAtual < 1.0)
+   //{
+   //     float deltaTime = Personagens[personagem].Velocidade/curvAux.calculaComprimentoDaCurva();
+   //     float deslocamento = Personagens[personagem].Velocidade*deltaTime;
+//
+ //       float nDeltaT = deslocamento/curvAux.calculaComprimentoDaCurva();
+ //       Personagens[personagem].tAtual += nDeltaT;
+  // }
+
+    double deltaT = 1.0/50;
+    Bezier aux;
+    double T;
+
+    double deslocamento = Personagens[personagem].Velocidade/Personagens[personagem].tAtual;
+    deltaT = aux.CalculaT(deslocamento);
+    T = T + deltaT;
+
+
+}
+
 
 // **********************************************************************
 //  void display( void )
@@ -319,10 +351,14 @@ void display( void )
 	glLineWidth(1);
 	glColor3f(1,1,1); // R, G, B  [0..1]
 
+
     DesenhaEixos();
 
     DesenhaPersonagens(T2.getDeltaT());
     DesenhaCurvas();
+
+    movePersonagens(0);
+
 
 	glutSwapBuffers();
 }
