@@ -292,10 +292,10 @@
 	<iostream>
 	<cmath>
 
-1665978036 source:c:\users\victo\onedrive\documentos\github\compgrafica-t2\instanciabz.cpp
+1667228238 source:c:\users\victo\onedrive\documentos\github\compgrafica-t2\instanciabz.cpp
 	"InstanciaBZ.h"
 
-1665978036 c:\users\victo\onedrive\documentos\github\compgrafica-t2\instanciabz.h
+1667228244 c:\users\victo\onedrive\documentos\github\compgrafica-t2\instanciabz.h
 	<iostream>
 	"Bezier.h"
 	"ListaDeCoresRGB.h"

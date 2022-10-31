@@ -68,7 +68,9 @@ Ponto movimento(0,1,0);
 int xr,yr,auxr;
 
 int nInimigos=10;
-int personagemPrincipal[5][5];
+//int personagemPrincipal[5][5];
+
+int curvAtual = 0;
 
 float angulo=0.0;
 
@@ -202,6 +204,7 @@ void CriaInstancias()
     Personagens[0].Rotacao = -90;
     Personagens[0].modelo = DesenhaCatavento;
     Personagens[0].Escala = Ponto (1,1,1);
+    Personagens[0].Curva = Bezier(Curvas[0].getPC(0), Curvas[0].getPC(1), Curvas[0].getPC(2));
 
 
     //Personagens[1].Posicao = Ponto (3,0);
@@ -297,6 +300,7 @@ void DesenhaCurvas()
 {
     for(int i=0; i<nCurvas;i++)
     {
+        ListaDeCoresRGB::defineCor(Curvas[i].cor);
         Curvas[i].Traca();
     }
 }
@@ -305,29 +309,53 @@ void movePersonagens(int personagem)
 {
 
 
-    //Bezier curvAux[3];
-    //curvAux[0] = Bezier(CurvasPersonagem[personagem][0]);
-    //curvAux[1] = Bezier(CurvasPersonagem[personagem][1]);
-    //curvAux[2] = Bezier(CurvasPersonagem[personagem][2]);
-
-   //while (Personagens[personagem].tAtual < 1.0)
-   //{
-   //     float deltaTime = Personagens[personagem].Velocidade/curvAux.calculaComprimentoDaCurva();
-   //     float deslocamento = Personagens[personagem].Velocidade*deltaTime;
-//
- //       float nDeltaT = deslocamento/curvAux.calculaComprimentoDaCurva();
- //       Personagens[personagem].tAtual += nDeltaT;
-  // }
-
     double deltaT = 1.0/50;
+    double T = deltaT;
     Bezier aux;
-    double T;
-
-    double deslocamento = Personagens[personagem].Velocidade/Personagens[personagem].tAtual;
-    deltaT = aux.CalculaT(deslocamento);
-    T = T + deltaT;
 
 
+    Personagens[personagem].Velocidade = 1;
+
+    if (Personagens[personagem].tAtual < 1.0)
+    {
+        float dt = Personagens[personagem].Velocidade/Curvas[0].ComprimentoTotalDaCurva;
+        double deslocamento = Personagens[personagem].Velocidade*dt;
+
+        T = Curvas[curvAtual].CalculaT(deslocamento);
+
+        Curvas[curvAtual].Calcula(T);
+
+        //cout << "Deslocamento: " << deslocamento << endl;
+        Personagens[personagem].tAtual += T;
+
+        cout << Personagens[personagem].tAtual << endl;
+
+
+        Ponto P = Curvas[curvAtual].Calcula(Personagens[personagem].tAtual);
+        Personagens[personagem].Posicao = P;
+        P.imprime();
+        cout << "Curva Atual: " << curvAtual << endl;
+
+
+    }
+
+    if (Personagens[personagem].tAtual > 1.0 && curvAtual <= nCurvas)
+    {
+        curvAtual++;
+        Personagens[personagem].tAtual = 0;
+        cout << "Curva Atual: " << curvAtual << endl;
+        cout << "numero de curvas: " << nCurvas << endl;
+    }
+    else if(curvAtual > nCurvas)
+    {
+        curvAtual = 0;
+    }
+
+
+//*/
+
+    //Personagens[personagem].Posicao = Curvas[5].getPC(1);
+    //Curvas[1].imprime();
 }
 
 
