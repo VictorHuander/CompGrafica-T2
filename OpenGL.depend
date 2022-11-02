@@ -288,14 +288,14 @@
 
 1665978036 c:\users\victo\onedrive\documentos\github\compgrafica-t2\gl\freeglut_ext.h
 
-1666208704 c:\users\victo\onedrive\documentos\github\compgrafica-t2\ponto.h
+1667403973 c:\users\victo\onedrive\documentos\github\compgrafica-t2\ponto.h
 	<iostream>
 	<cmath>
 
-1667228238 source:c:\users\victo\onedrive\documentos\github\compgrafica-t2\instanciabz.cpp
+1667411988 source:c:\users\victo\onedrive\documentos\github\compgrafica-t2\instanciabz.cpp
 	"InstanciaBZ.h"
 
-1667228244 c:\users\victo\onedrive\documentos\github\compgrafica-t2\instanciabz.h
+1667402574 c:\users\victo\onedrive\documentos\github\compgrafica-t2\instanciabz.h
 	<iostream>
 	"Bezier.h"
 	"ListaDeCoresRGB.h"
@@ -328,7 +328,7 @@
 	"Ponto.h"
 	<vector>
 
-1666208661 source:c:\users\victo\onedrive\documentos\github\compgrafica-t2\ponto.cpp
+1667403929 source:c:\users\victo\onedrive\documentos\github\compgrafica-t2\ponto.cpp
 	"Ponto.h"
 
 1665978036 source:c:\users\victo\onedrive\documentos\github\compgrafica-t2\temporizador.cpp
@@ -339,7 +339,7 @@
 	<windows.h>
 	<sys/time.h>
 
-1666846366 source:c:\users\victo\onedrive\documentos\github\compgrafica-t2\animacaocombezier.cpp
+1667413206 source:c:\users\victo\onedrive\documentos\github\compgrafica-t2\animacaocombezier.cpp
 	<iostream>
 	<cmath>
 	<ctime>

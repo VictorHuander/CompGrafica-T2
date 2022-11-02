@@ -102,6 +102,13 @@ void Ponto::versor()
     z /= m;
 }
 
+bool Ponto::isSame(Ponto p){
+    if(x == p.x && y == p.y){
+        return true;
+    }
+    return false;
+}
+
 
 Ponto ObtemMaximo (Ponto P1, Ponto P2)
 {

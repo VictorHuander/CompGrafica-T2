@@ -1,6 +1,6 @@
 // **********************************************************************
-// PUCRS/Escola Politécnica
-// COMPUTAÇÃO GRÁFICA
+// PUCRS/Escola Polit≈Ωcnica
+// COMPUTA‚Äö√åO GR√ßFICA
 //
 // Programa basico para criar aplicacoes 2D em OpenGL
 //
@@ -55,9 +55,10 @@ Ponto CurvasPersonagem[10][3];
 Bezier Curvas[20];
 unsigned int nCurvas;
 
-// Limites lógicos da área de desenho
+// Limites l‚Äîgicos da ‚Ä°rea de desenho
 Ponto Min, Max;
 
+int timer = 0;
 bool desenha = false;
 
 Poligono Mapa, MeiaSeta, Mastro, Pontos;
@@ -65,6 +66,8 @@ vector<vector<int> > curvasBezier;
 int nInstancias=0;
 
 Ponto movimento(0,1,0);
+
+Ponto pontoFinal;
 int xr,yr,auxr;
 int caso = 1;
 int ant;
@@ -75,6 +78,10 @@ int nInimigos=10;
 int curvAtual = 0;
 
 float angulo=0.0;
+
+int possiveisCurvasFinal[40];
+int nPossiveisCurvas = 0;
+int proximaCurvaAtual = -1;
 
 
 double nFrames=0;
@@ -91,7 +98,7 @@ void animate()
     TempoTotal += dt;
     nFrames++;
 
-    if (AccumDeltaT > 1.0/30) // fixa a atualização da tela em 30
+    if (AccumDeltaT > 1.0/30) // fixa a atualiza¬ç‚Äπo da tela em 30
     {
         AccumDeltaT = 0;
         angulo+=2;
@@ -182,7 +189,7 @@ void DesenhaApontador()
 //    Mastro.desenhaPoligono();
 //}
 // **********************************************************************
-void DesenhaCatavento()
+void DesenhaInimigo()
 {
     glLineWidth(3);
     //glPushMatrix();
@@ -197,16 +204,51 @@ void DesenhaCatavento()
 
     glPopMatrix();
 }
+
+void DesenhaPersonagem()
+{
+    glLineWidth(3);
+    //glPushMatrix();
+        //defineCor(BrightGold);
+        //DesenhaMastro();
+    glPushMatrix();
+        glColor3f(1,0,0); // R, G, B  [0..1]
+        glTranslated(0,0,0);
+        glScaled(0.2, 0.2, 1);
+        defineCor(Red);
+        DesenhaApontador();
+
+    glPopMatrix();
+}
 // **********************************************************************
-// Esta função deve instanciar todos os personagens do cenário
+// Esta fun¬ç‚Äπo deve instanciar todos os personagens do cen‚Ä°rio
 // **********************************************************************
 void CriaInstancias(int i)
 {
-    Personagens[i].Posicao = Pontos.getVertice(i);
-    Personagens[i].Rotacao = -90;
-    Personagens[i].modelo = DesenhaCatavento;
-    Personagens[i].Escala = Ponto (1,1,1);
-    Personagens[i].Curva = Bezier(Curvas[0].getPC(0), Curvas[0].getPC(1), Curvas[0].getPC(2));
+    nInstancias = i;
+
+    Personagens[0].Posicao = Pontos.getVertice(0);
+    Personagens[0].Rotacao = -90;
+    Personagens[0].modelo = DesenhaPersonagem;
+    Personagens[0].Escala = Ponto (1,1,1);
+    Personagens[0].Curva = Bezier(Curvas[0].getPC(0), Curvas[0].getPC(1), Curvas[0].getPC(2));
+    Personagens[0].cor = Red;
+    Personagens[0].proxCurva = -1;
+    Personagens[0].nroDaCurva = 0;
+    Personagens[0].Velocidade = 1;
+
+    for (int j = 1; j < i; j++)
+    {
+        Personagens[j].Posicao = Pontos.getVertice(j);
+        Personagens[j].Rotacao = -90;
+        Personagens[j].modelo = DesenhaInimigo;
+        Personagens[j].Escala = Ponto (1,1,1);
+        Personagens[j].Curva = Bezier(Curvas[j].getPC(0), Curvas[0].getPC(1), Curvas[0].getPC(2));
+        Personagens[j].cor = YellowGreen;
+        Personagens[j].proxCurva = -1;
+        Personagens[j].nroDaCurva = j;
+        Personagens[j].Velocidade = 1;
+    }
 
 
     //Personagens[1].Posicao = Ponto (3,0);
@@ -217,7 +259,7 @@ void CriaInstancias(int i)
     //Personagens[2].Rotacao = 0;
     //Personagens[2].modelo = DesenhaCatavento;
 
-    nInstancias = 5;
+
 
 }
 // **********************************************************************
@@ -268,10 +310,7 @@ void init()
     CarregaModelos();
     CriaCurvas();
 
-    for (int i =0; i < 5; i++)
-    {
-       CriaInstancias(i);
-    }
+    CriaInstancias(10);
 
 
     float d = 5;
@@ -291,16 +330,7 @@ void DesenhaRetangulo()
     glEnd();
 }
 
-void DesenhaPersonagens(float tempoDecorrido)
-{
-    //cout << "nInstancias: " << nInstancias << endl;
-    for (int i = 0; i < nInstancias; i++)
-    {
-        Personagens[i].AtualizaPosicao(tempoDecorrido);
-        Personagens[i].desenha();
 
-    }
-}
 // **********************************************************************
 //
 // **********************************************************************
@@ -312,6 +342,191 @@ void DesenhaCurvas()
         Curvas[i].Traca();
     }
 }
+
+void proximaCurva()
+{
+    if(Personagens[0].metadeCurva == true)
+    {
+        Curvas[Personagens[0].proxCurva].cor = Blue;
+        if(proximaCurvaAtual + 1 < nPossiveisCurvas)
+        {
+            proximaCurvaAtual += 1;
+            Personagens[0].proxCurva = possiveisCurvasFinal[proximaCurvaAtual];
+        }
+        else
+        {
+            proximaCurvaAtual = 0;
+            Personagens[0].proxCurva = possiveisCurvasFinal[proximaCurvaAtual];
+        }
+        Curvas[Personagens[0].proxCurva].cor = Red;
+    }
+}
+
+void ultimaCurva()
+{
+    if(Personagens[0].metadeCurva == true)
+    {
+        Curvas[Personagens[0].proxCurva].cor = Blue;
+        if(proximaCurvaAtual - 1 < 0)
+        {
+            proximaCurvaAtual = nPossiveisCurvas - 1;
+            Personagens[0].proxCurva = possiveisCurvasFinal[proximaCurvaAtual];
+        }
+        else
+        {
+            proximaCurvaAtual -= 1;
+            Personagens[0].proxCurva = possiveisCurvasFinal[proximaCurvaAtual];
+        }
+        Curvas[Personagens[0].proxCurva].cor = Red;
+    }
+}
+
+void alteraPossiveisCurvas(int temp[])
+{
+    if(Personagens[0].metadeCurva == true)
+    {
+        for(int i = 0; i < 40; i++)
+        {
+            possiveisCurvasFinal[i] = -1;
+        }
+        for(int i = 0; i < nPossiveisCurvas; i++)
+        {
+            possiveisCurvasFinal[i] = temp[i];
+        }
+    }
+}
+
+void trocaProximaCurvaPersonagemPrincipal(InstanciaBZ *personagem)
+{
+
+    personagem->metadeCurva = true;
+    int possiveisCurvas[40];
+    int contador = 0;
+    if(personagem->direcao == 1)
+    {
+        pontoFinal = personagem->Curva.getPC(2);
+    }
+    else
+    {
+        pontoFinal = personagem->Curva.getPC(0);
+    }
+
+    for(int i = 0; i < nCurvas; i++)
+    {
+        if(personagem->nroDaCurva != i)
+        {
+            if(Curvas[i].getPC(0).isSame(pontoFinal))
+            {
+                possiveisCurvas[contador++] = i;
+            }
+            if(Curvas[i].getPC(2).isSame(pontoFinal))
+            {
+                possiveisCurvas[contador++] = i;
+            }
+        }
+    }
+
+    int range = (contador - 1) - 0 + 1;
+    int num = rand() % range + 0;
+    personagem->proxCurva = possiveisCurvas[num];
+    nPossiveisCurvas = contador;
+    proximaCurvaAtual = num;
+    alteraPossiveisCurvas(possiveisCurvas);
+    Curvas[personagem->proxCurva].cor = Red;
+}
+
+void trocaCurvaAtualPersonagemPrincipal(InstanciaBZ *personagem)
+{
+    personagem->metadeCurva = false;
+    if(Curvas[personagem->proxCurva].getPC(0).isSame(personagem->Curva.getPC(2)))
+    {
+        personagem->direcao = 1;
+    }
+    else if(Curvas[personagem->proxCurva].getPC(2).isSame(personagem->Curva.getPC(2)))
+    {
+        personagem->direcao = 0;
+    }
+    else if(Curvas[personagem->proxCurva].getPC(0).isSame(personagem->Curva.getPC(0)))
+    {
+        personagem->direcao = 1;
+    }
+    personagem->Curva = Curvas[personagem->proxCurva];
+    personagem->nroDaCurva = personagem->proxCurva;
+    personagem->proxCurva = -1;
+    if(personagem->direcao == 1)
+    {
+        personagem->tAtual = 0;
+    }
+    else
+    {
+        personagem->tAtual = 1;
+    }
+}
+
+void trocaProximaCurva(InstanciaBZ *personagem)
+{
+    personagem->metadeCurva = true;
+    Ponto pontoFinal;
+    int possiveisCurvas[40];
+    int contador = 0;
+    if(personagem->direcao == 1)
+    {
+        pontoFinal = personagem->Curva.getPC(2);
+    }
+    else
+    {
+        pontoFinal = personagem->Curva.getPC(0);
+    }
+    for(int i = 0; i < nCurvas; i++)
+    {
+        if(personagem->nroDaCurva != i)
+        {
+            if(Curvas[i].getPC(0).isSame(pontoFinal))
+            {
+                possiveisCurvas[contador++] = i;
+            }
+            if(Curvas[i].getPC(2).isSame(pontoFinal))
+            {
+                possiveisCurvas[contador++] = i;
+            }
+        }
+    }
+
+    int range = (contador - 1) - 0 + 1;
+    int num = rand() % range + 0;
+    personagem->proxCurva = possiveisCurvas[num];
+}
+
+void trocaCurvaAtual(InstanciaBZ *personagem)
+{
+
+    personagem->metadeCurva = false;
+    if(Curvas[personagem->proxCurva].getPC(0).isSame(personagem->Curva.getPC(2)))
+    {
+        personagem->direcao = 1;
+    }
+    else if(Curvas[personagem->proxCurva].getPC(2).isSame(personagem->Curva.getPC(2)))
+    {
+        personagem->direcao = 0;
+    }
+    else if(Curvas[personagem->proxCurva].getPC(0).isSame(personagem->Curva.getPC(0)))
+    {
+        personagem->direcao = 1;
+    }
+    personagem->Curva = Curvas[personagem->proxCurva];
+    personagem->nroDaCurva = personagem->proxCurva;
+    personagem->proxCurva = -1;
+    if(personagem->direcao == 1)
+    {
+        personagem->tAtual = 0;
+    }
+    else
+    {
+        personagem->tAtual = 1;
+    }
+}
+
+
 
 void movePersonagens(int personagem)
 {
@@ -357,7 +572,6 @@ void movePersonagens(int personagem)
 
     if (Personagens[personagem].tAtual > 1.0)
     {
-        cout << "entrei" << endl;
         for(int i = 0; i < nCurvas; i++)
         {
             if (Curvas[curvAtual].getPC(2) == Curvas[i].getPC(0) && i != curvAtual)
@@ -384,91 +598,103 @@ void movePersonagens(int personagem)
 
     }
 
+}
 
-
-
-
-    /*
-    else if (Personagens[personagem].tAtual > 0 && (caso == 0 || caso == 2))
+bool checaColisao()
+{
+    for (int i = 1; i < nInstancias; i++)
     {
-        float dt = Personagens[personagem].Velocidade/Curvas[curvAtual].ComprimentoTotalDaCurva;
-        double deslocamento = Personagens[personagem].Velocidade*dt;
-
-        T = Curvas[curvAtual].CalculaT(deslocamento);
-
-        Curvas[curvAtual].Calcula(T);
-
-        Personagens[personagem].tAtual -= T;
-
-        cout << Personagens[personagem].tAtual << endl;
-
-
-        Ponto P = Curvas[curvAtual].Calcula(Personagens[personagem].tAtual);
-        Personagens[personagem].Posicao = P;
-        P.imprime();
-        cout << "Curva Atual: " << curvAtual << endl;
-
-
-    }
-
-    if (Personagens[personagem].tAtual > 1.0 && caso == 1)
-    {
-        for(int i = 0; i < nCurvas; i++)
+        if(calculaDistancia(Personagens[0].Posicao, Personagens[i].Posicao) < 0.30)
         {
-            if (Curvas[curvAtual].getPC(1) == Curvas[i].getPC(0) && i != curvAtual)
-            {
-                curvAtual = i;
-                Personagens[personagem].tAtual = 1;
-                caso = 0;
-                i = nCurvas;
-            }
-        }
-
-    }
-
-    if (Personagens[personagem].tAtual < 0 && caso == 0)
-    {
-       for(int j = 0; j < nCurvas; j++)
-        {
-            if (Curvas[curvAtual].getPC(0) == Curvas[j].getPC(1) && j != curvAtual)
-            {
-                curvAtual = j;
-                Personagens[personagem].tAtual = 0;
-                caso = 2;
-                j = nCurvas;
-            }
+            cout << "Ocorreu colisao com inimigo" << endl;
+            return true;
         }
     }
 
-    if (Personagens[personagem].tAtual < 1.0 && caso == 2)
+    return false;
+}
+
+void DesenhaPersonagens(float tempoDecorrido)
+{
+
+    checaColisao();
+    cout << timer << endl;
+    timer+=100;
+    if(checaColisao() && timer > 500)
     {
-        for(int i = 0; i < nCurvas; i++)
+        cout << "Voce morreu" << endl;
+        exit ( 0 );
+    }
+    if(desenha)
+    {
+        Personagens[0].AtualizaPosicao(tempoDecorrido);
+    }
+    Personagens[0].desenha();
+    if(Personagens[0].direcao == 1)
+    {
+        if(Personagens[0].tAtual >= 0.5 && Personagens[0].metadeCurva == false)
         {
-            if (Curvas[curvAtual].getPC(1) == Curvas[i].getPC(0) && i != curvAtual)
-            {
-                curvAtual = i;
-                Personagens[personagem].tAtual = 1;
-                caso = 1;
-                i = nCurvas;
-            }
+            trocaProximaCurvaPersonagemPrincipal(&Personagens[0]);
+        }
+        if(Personagens[0].tAtual >= 1)
+        {
+            trocaCurvaAtualPersonagemPrincipal(&Personagens[0]);
+        }
+    }
+
+    else{
+        if(Personagens[0].tAtual <= 0.5 && Personagens[0].metadeCurva == false)
+        {
+            trocaProximaCurvaPersonagemPrincipal(&Personagens[0]);
         }
 
+        if(Personagens[0].tAtual <= 0)
+        {
+            trocaCurvaAtualPersonagemPrincipal(&Personagens[0]);
+        }
     }
-    */
-
+    for(int i = 1; i < nInstancias; i++)
+    {
+        Personagens[i].AtualizaPosicao(tempoDecorrido);
+        Personagens[i].desenha();
+        if(Personagens[i].direcao == 1)
+        {
+            if(Personagens[i].tAtual >= 0.5 && Personagens[i].metadeCurva == false)
+            {
+                trocaProximaCurva(&Personagens[i]);
+            }
+            if(Personagens[i].tAtual >= 1)
+            {
+                trocaCurvaAtual(&Personagens[i]);
+            }
+        }
+        else
+        {
+            if(Personagens[i].tAtual <= 0.5 && Personagens[i].metadeCurva == false)
+            {
+                trocaProximaCurva(&Personagens[i]);
+            }
+            if(Personagens[i].tAtual <= 0)
+            {
+                trocaCurvaAtual(&Personagens[i]);
+            }
+        }
+    }
 }
 
 
 // **********************************************************************
 //  void display( void )
 // **********************************************************************
+
+
 void display( void )
 {
 
 	// Limpa a tela coma cor de fundo
 	glClear(GL_COLOR_BUFFER_BIT);
 
-    // Define os limites lÛgicos da ·rea OpenGL dentro da Janela
+    // Define os limites l√≥gicos da √°rea OpenGL dentro da Janela
 	glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
@@ -485,16 +711,14 @@ void display( void )
     DesenhaPersonagens(T2.getDeltaT());
     DesenhaCurvas();
 
-    movePersonagens(0);
-
 
 
 	glutSwapBuffers();
 }
 // **********************************************************************
 // ContaTempo(double tempo)
-//      conta um certo número de segundos e informa quanto frames
-// se passaram neste período.
+//      conta um certo n≈ìmero de segundos e informa quanto frames
+// se passaram neste per‚Äôodo.
 // **********************************************************************
 void ContaTempo(double tempo)
 {
@@ -542,10 +766,10 @@ void arrow_keys ( int a_keys, int x, int y )
 	switch ( a_keys )
 	{
         case GLUT_KEY_LEFT:
-            Personagens[1].Posicao.x -= 0.5;
+            desenha = true;
             break;
         case GLUT_KEY_RIGHT:
-            Personagens[1].Rotacao++;
+            desenha = false;
             break;
 		case GLUT_KEY_UP:       // Se pressionar UP
 			glutFullScreen ( ); // Vai para Full Screen
@@ -576,41 +800,41 @@ int  main ( int argc, char** argv )
     glutInitWindowSize  ( 650, 500);
 
     // Cria a janela na tela, definindo o nome da
-    // que aparecera na barra de tÌtulo da janela.
+    // que aparecera na barra de t√≠tulo da janela.
     glutCreateWindow    ( "Animacao com Bezier" );
 
-    // executa algumas inicializaÁıes
+    // executa algumas inicializa√ß√µes
     init ();
 
     // Define que o tratador de evento para
     // o redesenho da tela. A funcao "display"
-    // ser· chamada automaticamente quando
-    // for necess·rio redesenhar a janela
+    // ser√° chamada automaticamente quando
+    // for necess√°rio redesenhar a janela
     glutDisplayFunc ( display );
 
     // Define que o tratador de evento para
-    // o invalidação da tela. A funcao "display"
-    // ser· chamada automaticamente sempre que a
-    // máquina estiver ociosa (idle)
+    // o invalida¬ç‚Äπo da tela. A funcao "display"
+    // ser√° chamada automaticamente sempre que a
+    // m‚Ä°quina estiver ociosa (idle)
     glutIdleFunc(animate);
 
     // Define que o tratador de evento para
     // o redimensionamento da janela. A funcao "reshape"
-    // ser· chamada automaticamente quando
-    // o usu·rio alterar o tamanho da janela
+    // ser√° chamada automaticamente quando
+    // o usu√°rio alterar o tamanho da janela
     glutReshapeFunc ( reshape );
 
     // Define que o tratador de evento para
     // as teclas. A funcao "keyboard"
-    // ser· chamada automaticamente sempre
-    // o usu·rio pressionar uma tecla comum
+    // ser√° chamada automaticamente sempre
+    // o usu√°rio pressionar uma tecla comum
     glutKeyboardFunc ( keyboard );
 
     // Define que o tratador de evento para
     // as teclas especiais(F1, F2,... ALT-A,
     // ALT-B, Teclas de Seta, ...).
-    // A funcao "arrow_keys" ser· chamada
-    // automaticamente sempre o usu·rio
+    // A funcao "arrow_keys" ser√° chamada
+    // automaticamente sempre o usu√°rio
     // pressionar uma tecla especial
     glutSpecialFunc ( arrow_keys );
 

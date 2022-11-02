@@ -28,6 +28,7 @@ public:
     Bezier Curva; // referencia para a curva onde esta' a instancia
     Ponto Posicao, Escala;
     float Rotacao;
+    bool metadeCurva;
 
     int nroDaCurva;
     int proxCurva;

@@ -53,6 +53,7 @@ InstanciaBZ::InstanciaBZ()
     proxCurva = -1;
     tAtual = 0.0;
     direcao = 1;
+    metadeCurva = false;
 
 }
 InstanciaBZ::InstanciaBZ(Bezier C)
@@ -65,11 +66,12 @@ InstanciaBZ::InstanciaBZ(Bezier C)
     Curva = C;
     tAtual = 0;
     direcao = 1;
+    metadeCurva = false;
 }
 
 void InstanciaBZ::desenha()
 {
-    Escala.imprime("Escala: ");
+    //Escala.imprime("Escala: ");
     cout << endl;
     // Aplica as transformacoes geometricas no modelo
     glPushMatrix();
@@ -98,6 +100,14 @@ Ponto InstanciaBZ::ObtemPosicao()
 }
 void InstanciaBZ::AtualizaPosicao(float tempoDecorrido)
 {
-    //cout << "AtualizaPosicao" << endl;
+    float deslocamento = Velocidade * tempoDecorrido;
+    float comprimentoCurva = Curva.ComprimentoTotalDaCurva;
+    float deltaT = deslocamento/comprimentoCurva;
+    if(direcao == 1){
+        tAtual += deltaT;
+    } else {
+        tAtual -= deltaT;
+    }
+    Posicao = Curva.Calcula(tAtual);
 }
 
