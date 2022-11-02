@@ -358,7 +358,7 @@ void proximaCurva()
             proximaCurvaAtual = 0;
             Personagens[0].proxCurva = possiveisCurvasFinal[proximaCurvaAtual];
         }
-        Curvas[Personagens[0].proxCurva].cor = Red;
+        Curvas[Personagens[0].proxCurva].cor = Personagens[0].cor;
     }
 }
 
@@ -396,7 +396,7 @@ void alteraPossiveisCurvas(int temp[])
     }
 }
 
-void trocaProximaCurvaPersonagemPrincipal(InstanciaBZ *personagem)
+void trocaProxCurvaPersonagem(InstanciaBZ *personagem)
 {
 
     personagem->metadeCurva = true;
@@ -435,7 +435,7 @@ void trocaProximaCurvaPersonagemPrincipal(InstanciaBZ *personagem)
     Curvas[personagem->proxCurva].cor = Red;
 }
 
-void trocaCurvaAtualPersonagemPrincipal(InstanciaBZ *personagem)
+void trocaCurvaAtualPersonagem(InstanciaBZ *personagem)
 {
     personagem->metadeCurva = false;
     if(Curvas[personagem->proxCurva].getPC(0).isSame(personagem->Curva.getPC(2)))
@@ -463,7 +463,7 @@ void trocaCurvaAtualPersonagemPrincipal(InstanciaBZ *personagem)
     }
 }
 
-void trocaProximaCurva(InstanciaBZ *personagem)
+void trocaProxCurva(InstanciaBZ *personagem)
 {
     personagem->metadeCurva = true;
     Ponto pontoFinal;
@@ -604,7 +604,7 @@ bool checaColisao()
 {
     for (int i = 1; i < nInstancias; i++)
     {
-        if(calculaDistancia(Personagens[0].Posicao, Personagens[i].Posicao) < 0.30)
+        if(calculaDistancia(Personagens[0].Posicao, Personagens[i].Posicao) < 0.45)
         {
             cout << "Ocorreu colisao com inimigo" << endl;
             return true;
@@ -620,7 +620,7 @@ void DesenhaPersonagens(float tempoDecorrido)
     checaColisao();
     cout << timer << endl;
     timer+=100;
-    if(checaColisao() && timer > 500)
+    if(checaColisao() && timer > 1000)
     {
         cout << "Voce morreu" << endl;
         exit ( 0 );
@@ -634,23 +634,23 @@ void DesenhaPersonagens(float tempoDecorrido)
     {
         if(Personagens[0].tAtual >= 0.5 && Personagens[0].metadeCurva == false)
         {
-            trocaProximaCurvaPersonagemPrincipal(&Personagens[0]);
+            trocaProxCurvaPersonagem(&Personagens[0]);
         }
         if(Personagens[0].tAtual >= 1)
         {
-            trocaCurvaAtualPersonagemPrincipal(&Personagens[0]);
+            trocaCurvaAtualPersonagem(&Personagens[0]);
         }
     }
 
     else{
         if(Personagens[0].tAtual <= 0.5 && Personagens[0].metadeCurva == false)
         {
-            trocaProximaCurvaPersonagemPrincipal(&Personagens[0]);
+            trocaProxCurvaPersonagem(&Personagens[0]);
         }
 
         if(Personagens[0].tAtual <= 0)
         {
-            trocaCurvaAtualPersonagemPrincipal(&Personagens[0]);
+            trocaCurvaAtualPersonagem(&Personagens[0]);
         }
     }
     for(int i = 1; i < nInstancias; i++)
@@ -661,7 +661,7 @@ void DesenhaPersonagens(float tempoDecorrido)
         {
             if(Personagens[i].tAtual >= 0.5 && Personagens[i].metadeCurva == false)
             {
-                trocaProximaCurva(&Personagens[i]);
+                trocaProxCurva(&Personagens[i]);
             }
             if(Personagens[i].tAtual >= 1)
             {
@@ -672,7 +672,7 @@ void DesenhaPersonagens(float tempoDecorrido)
         {
             if(Personagens[i].tAtual <= 0.5 && Personagens[i].metadeCurva == false)
             {
-                trocaProximaCurva(&Personagens[i]);
+                trocaProxCurva(&Personagens[i]);
             }
             if(Personagens[i].tAtual <= 0)
             {
